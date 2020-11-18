@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCT.Domain", "src\DCT.Domai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCT.Persistence", "src\DCT.Persistence\DCT.Persistence.csproj", "{300752F4-9956-49ED-92E6-D897774F287F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCT.Application", "src\DCT.Application\DCT.Application.csproj", "{65DF6003-C26E-4732-ACC5-513152DDF716}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{300752F4-9956-49ED-92E6-D897774F287F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{300752F4-9956-49ED-92E6-D897774F287F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{300752F4-9956-49ED-92E6-D897774F287F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65DF6003-C26E-4732-ACC5-513152DDF716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65DF6003-C26E-4732-ACC5-513152DDF716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65DF6003-C26E-4732-ACC5-513152DDF716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65DF6003-C26E-4732-ACC5-513152DDF716}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{40D28FFB-C301-4371-A769-3CDC14E7A4E2} = {9844A441-C10D-4BED-A026-95593625E25D}
 		{1F2794B2-03BE-4DE4-9F4F-20B31DE39A74} = {9844A441-C10D-4BED-A026-95593625E25D}
 		{300752F4-9956-49ED-92E6-D897774F287F} = {9844A441-C10D-4BED-A026-95593625E25D}
+		{65DF6003-C26E-4732-ACC5-513152DDF716} = {9844A441-C10D-4BED-A026-95593625E25D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9B909A36-F7F5-46E5-B443-0477C93E5A23}
