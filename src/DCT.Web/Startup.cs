@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace DCT.Web
 {
@@ -20,13 +20,12 @@ namespace DCT.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
 
-            services.AddControllersWithViews();
-
-            // In production, the React files will be served from this directory
+            services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/build";
+                configuration.RootPath = "client-app/build";
             });
         }
 
@@ -40,7 +39,6 @@ namespace DCT.Web
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -48,24 +46,23 @@ namespace DCT.Web
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute(
+                routes.MapRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    template: "api/{controller}/{action}/{id}"
+                    );
             });
-
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
-
+                spa.Options.SourcePath = Path.Join(env.ContentRootPath, "client-app");
                 if (env.IsDevelopment())
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            app.UseRouting();
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace DCT.Web.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class TaxesController : ControllerBase
+    public class TaxesController : BaseController
     {
         private readonly ILogger<TaxesController> _logger;
 
@@ -15,10 +14,9 @@ namespace DCT.Web.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<int> Get()
+        public async Task<IActionResult> GetTaxes()
         {
-            return new List<int>();
+            return Ok("test");
         }
     }
 }
