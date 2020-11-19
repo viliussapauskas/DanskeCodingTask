@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace DCT.Application.Interfaces.Services
+namespace DCT.Application.Services.Interfaces
 {
     public interface ITaxesService
     {
