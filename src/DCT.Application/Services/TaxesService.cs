@@ -16,7 +16,7 @@ namespace DCT.Application.Services
 
         public async Task<double> GetTaxes(int municipalityId, DateTime date)
         {
-            var municipalities = await _municipalityRepository.GetAll();
+            var municipality = await _municipalityRepository.GetById(municipalityId);
             return municipalityId;
         }
     }
