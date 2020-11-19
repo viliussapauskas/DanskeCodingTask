@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using DCT.Application.Interfaces.Services;
-using Microsoft.AspNetCore.Mvc;
+using DCT.Application.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace DCT.Web.Controllers
 {
     public class TaxesController : BaseController
     {
-        private readonly ILogger<TaxesController> _logger;
+        private readonly ILogger<TaxesController> _logger; // TODO
         private readonly ITaxesService _taxesService;
 
         public TaxesController(ILogger<TaxesController> logger, ITaxesService taxesService)

@@ -1,5 +1,8 @@
-using DCT.Application.Interfaces.Services;
 using DCT.Application.Services;
+using DCT.Application.Services.Interfaces;
+using DCT.Persistence;
+using DCT.Persistence.Repositories;
+using DCT.Persistence.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -24,6 +27,9 @@ namespace DCT.Web
         {
             services.AddHttpContextAccessor();
 
+            services.AddDbContext<DCT_DbContext>();
+
+            services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
             services.AddScoped<ITaxesService, TaxesService>();
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
