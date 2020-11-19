@@ -17,10 +17,10 @@ namespace DCT.Web.Controllers
             _taxesService = taxesService;
         }
 
-        [HttpGet]
-        public async Task<double> GetTaxes()
+        [HttpGet("municipalities/{municipalityId}/date/{date}")]
+        public async Task<double> GetTaxes(int municipalityId, DateTime date)
         {
-            return await _taxesService.GetTaxes(1, DateTime.Now);
+            return await _taxesService.GetTaxes(municipalityId, date);
         }
     }
 }
