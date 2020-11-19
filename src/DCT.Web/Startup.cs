@@ -6,6 +6,7 @@ using DCT.Persistence.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,9 +28,11 @@ namespace DCT.Web
         {
             services.AddHttpContextAccessor();
 
-            services.AddDbContext<DCT_DbContext>();
+            services.AddDbContext<DCT_DbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DanskeCodingTaskDB")));
 
             services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
+            services.AddScoped<IMunicipalityService, MunicipalityService>();
             services.AddScoped<ITaxesService, TaxesService>();
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
