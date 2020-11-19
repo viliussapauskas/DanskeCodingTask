@@ -2,7 +2,7 @@
 {
     public enum RuleKeyEnum
     {
-        One,
-        Two
+        One = 1,
+        Two = 2
     }
 }

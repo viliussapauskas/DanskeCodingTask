@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DCT.Application.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace DCT.Web.Controllers
@@ -16,6 +17,7 @@ namespace DCT.Web.Controllers
             _taxesService = taxesService;
         }
 
+        [HttpGet]
         public async Task<double> GetTaxes()
         {
             return await _taxesService.GetTaxes(1, DateTime.Now);
