@@ -25,8 +25,7 @@ namespace DCT.Application.Services
                 Id = x.Id,
                 Name = x.Name,
                 RuleKey = x.RuleKey
-            })
-                .ToList();
+            }).ToList();
         }
     }
 }
