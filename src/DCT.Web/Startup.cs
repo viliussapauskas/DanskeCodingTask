@@ -1,5 +1,6 @@
 using DCT.Application.Services;
 using DCT.Application.Services.Interfaces;
+using DCT.Application.Services.TaxesCalculationService;
 using DCT.Persistence;
 using DCT.Persistence.Repositories;
 using DCT.Persistence.Repositories.Interfaces;
@@ -34,6 +35,8 @@ namespace DCT.Web
             services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
             services.AddScoped<IMunicipalityService, MunicipalityService>();
             services.AddScoped<ITaxesService, TaxesService>();
+
+            services.AddSingleton<ITaxesCalculationService, TaxesCalculationService>();
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddSpaStaticFiles(configuration =>

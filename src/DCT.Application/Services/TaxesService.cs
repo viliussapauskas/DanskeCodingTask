@@ -8,10 +8,12 @@ namespace DCT.Application.Services
     public class TaxesService: ITaxesService
     {
         private readonly IMunicipalityRepository _municipalityRepository;
+        private readonly ITaxesCalculationService _taxesCalculationService;
 
-        public TaxesService(IMunicipalityRepository municipalityRepository)
+        public TaxesService(IMunicipalityRepository municipalityRepository, ITaxesCalculationService taxesCalculationService)
         {
             _municipalityRepository = municipalityRepository;
+            _taxesCalculationService = taxesCalculationService;
         }
 
         public async Task<double> GetTaxes(int municipalityId, DateTime date)
@@ -20,10 +22,12 @@ namespace DCT.Application.Services
 
             if(municipality == null)
             {
-                throw new Exception("System error: Municipality not found");
+                throw new Exception("Municipality not found");
             }
 
-            return municipalityId;
+            var result = _taxesCalculationService.CalculateTaxes(municipality.RuleKey, date);
+
+            return result;
         }
     }
 }
