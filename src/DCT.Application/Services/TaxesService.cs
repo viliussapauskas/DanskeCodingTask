@@ -17,6 +17,12 @@ namespace DCT.Application.Services
         public async Task<double> GetTaxes(int municipalityId, DateTime date)
         {
             var municipality = await _municipalityRepository.GetById(municipalityId);
+
+            if(municipality == null)
+            {
+                throw new Exception("System error: Municipality not found");
+            }
+
             return municipalityId;
         }
     }
