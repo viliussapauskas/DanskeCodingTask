@@ -1,9 +1,11 @@
 using DCT.Application.Services;
 using DCT.Application.Services.Interfaces;
 using DCT.Application.Services.TaxesCalculationService;
+using DCT.Application.Validation;
 using DCT.Persistence;
 using DCT.Persistence.Repositories;
 using DCT.Persistence.Repositories.Interfaces;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -38,7 +40,9 @@ namespace DCT.Web
 
             services.AddSingleton<ITaxesCalculationService, TaxesCalculationService>();
 
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<GetCalculatedTaxesValidator>());
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "client-app/build";

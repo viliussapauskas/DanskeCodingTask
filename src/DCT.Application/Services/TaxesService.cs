@@ -1,4 +1,5 @@
-﻿using DCT.Application.Services.Interfaces;
+﻿using DCT.Application.Models;
+using DCT.Application.Services.Interfaces;
 using DCT.Persistence.Repositories.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
@@ -19,17 +20,17 @@ namespace DCT.Application.Services
             _logger = logger;
         }
 
-        public async Task<double> GetTaxes(int municipalityId, DateTime date)
+        public async Task<double> GetTaxes(GetCalculatedTaxesDTO request)
         {
-            var municipality = await _municipalityRepository.GetById(municipalityId);
+            var municipality = await _municipalityRepository.GetById(request.MunicipalityId);
 
             if (municipality == null)
             {
-                _logger.LogError($"Municipality with id {municipalityId} not found");
+                _logger.LogError($"Municipality with id {request.MunicipalityId} not found");
                 throw new Exception("Municipality not found");
             }
 
-            var result = _taxesCalculationService.CalculateTaxes(municipality.RuleKey, date);
+            var result = _taxesCalculationService.CalculateTaxes(municipality.RuleKey, request.Date);
 
             return result;
         }

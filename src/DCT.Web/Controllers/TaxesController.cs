@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DCT.Application.Models;
 using DCT.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,10 +18,10 @@ namespace DCT.Web.Controllers
             _taxesService = taxesService;
         }
 
-        [HttpGet("municipalities/{municipalityId}/date/{date}")]
-        public async Task<double> GetTaxes(int municipalityId, DateTime date)
+        [HttpGet]
+        public async Task<double> GetTaxes([FromQuery] GetCalculatedTaxesDTO query)
         {
-            return await _taxesService.GetTaxes(municipalityId, date);
+            return await _taxesService.GetTaxes(query);
         }
     }
 }

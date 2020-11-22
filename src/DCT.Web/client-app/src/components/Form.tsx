@@ -65,9 +65,7 @@ const Form: FC<IProps> = (props) => {
             <FormControl className={classes.formControl}>
               <InputLabel>Municipality</InputLabel>
               <Select
-                onChange={(event) =>
-                  setSelectedMunicipalityId(event.target.value as number)
-                }
+                onChange={(event) => setSelectedMunicipalityId(event.target.value as number)}
                 value={selectedMunicipalityId}
               >
                 {props.municipalities.map((x) => (
@@ -78,7 +76,7 @@ const Form: FC<IProps> = (props) => {
               </Select>
             </FormControl>
             <TextField
-              variant="outlined"
+              variant="standard"
               margin="normal"
               required
               fullWidth
@@ -100,7 +98,14 @@ const Form: FC<IProps> = (props) => {
 
             {result && (
               <Fade in={true}>
-                <div>Result: {result}</div>
+                <div>
+                    <Typography variant="h5">
+                        Calculated Taxes 
+                    </Typography>
+                    <Typography variant="h4">
+                        {result}
+                    </Typography>
+                </div>
               </Fade>
             )}
           </Paper>
