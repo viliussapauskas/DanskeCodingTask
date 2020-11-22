@@ -7,9 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9844A441-C10
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DCT.Web", "src\DCT.Web\DCT.Web.csproj", "{40D28FFB-C301-4371-A769-3CDC14E7A4E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCT.Persistence", "src\DCT.Persistence\DCT.Persistence.csproj", "{300752F4-9956-49ED-92E6-D897774F287F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DCT.Persistence", "src\DCT.Persistence\DCT.Persistence.csproj", "{300752F4-9956-49ED-92E6-D897774F287F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCT.Application", "src\DCT.Application\DCT.Application.csproj", "{65DF6003-C26E-4732-ACC5-513152DDF716}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DCT.Application", "src\DCT.Application\DCT.Application.csproj", "{65DF6003-C26E-4732-ACC5-513152DDF716}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCT.Tests", "src\DCT.Tests\DCT.Tests.csproj", "{7E7A8EA3-C967-4242-8349-0020408DB06D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{65DF6003-C26E-4732-ACC5-513152DDF716}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65DF6003-C26E-4732-ACC5-513152DDF716}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65DF6003-C26E-4732-ACC5-513152DDF716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E7A8EA3-C967-4242-8349-0020408DB06D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E7A8EA3-C967-4242-8349-0020408DB06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E7A8EA3-C967-4242-8349-0020408DB06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E7A8EA3-C967-4242-8349-0020408DB06D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{40D28FFB-C301-4371-A769-3CDC14E7A4E2} = {9844A441-C10D-4BED-A026-95593625E25D}
 		{300752F4-9956-49ED-92E6-D897774F287F} = {9844A441-C10D-4BED-A026-95593625E25D}
 		{65DF6003-C26E-4732-ACC5-513152DDF716} = {9844A441-C10D-4BED-A026-95593625E25D}
+		{7E7A8EA3-C967-4242-8349-0020408DB06D} = {9844A441-C10D-4BED-A026-95593625E25D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9B909A36-F7F5-46E5-B443-0477C93E5A23}
