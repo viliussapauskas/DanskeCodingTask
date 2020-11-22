@@ -34,7 +34,7 @@ namespace DCT.Web
             services.AddDbContext<DCT_DbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DanskeCodingTaskDB")));
 
-            services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
+            services.AddScoped<IMunicipalityRepository, MunicipalityRepository<DCT_DbContext>>();
             services.AddScoped<IMunicipalityService, MunicipalityService>();
             services.AddScoped<ITaxesService, TaxesService>();
 

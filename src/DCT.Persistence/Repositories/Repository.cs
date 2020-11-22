@@ -8,13 +8,14 @@ using DCT.Persistence.Shared;
 
 namespace DCT.Persistence.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
+    public class Repository<TContext, TEntity> : IRepository<TContext, TEntity> 
+        where TContext: DbContext
+        where TEntity : Entity
     {
-        //TODO: Should inject additional layer that decides which DataStorage to use
-        protected readonly DCT_DbContext _dbContext;
-        protected readonly DbSet<TEntity> DbSet;
+        private readonly TContext _dbContext;
+        private readonly DbSet<TEntity> DbSet;
 
-        public Repository(DCT_DbContext context)
+        public Repository(TContext context)
         {
             _dbContext = context;
             DbSet = _dbContext.Set<TEntity>();
