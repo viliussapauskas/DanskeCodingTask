@@ -27,7 +27,6 @@ namespace DCT.Tests.Services
 
             var repositoryMock = new Mock<IMunicipalityRepository>();
             repositoryMock.Setup(x => x.GetAll()).ReturnsAsync(municipalities);
-            var repositoryMockEmployee = new Mock<IMunicipalityRepository>();
 
             var municipalityService = new MunicipalityService(repositoryMock.Object, _logger);
 

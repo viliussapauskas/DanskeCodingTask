@@ -1,6 +1,7 @@
 ﻿using DCT.Application.Services.Interfaces;
 using DCT.Application.Utils;
 using DCT.Persistence.Enums;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
@@ -8,8 +9,10 @@ namespace DCT.Application.Services.TaxesCalculationService
 {
     public class TaxesCalculationService : ITaxesCalculationService
     {
-        public TaxesCalculationService()
+        private readonly ILogger<ITaxesCalculationService> _logger;
+        public TaxesCalculationService(ILogger<ITaxesCalculationService> logger)
         {
+            _logger = logger;
         }
 
         public double CalculateTaxes(RuleKeyEnum ruleKeyEnum, DateTime date)
@@ -18,7 +21,7 @@ namespace DCT.Application.Services.TaxesCalculationService
             {
                 RuleKeyEnum.One => CalculateTaxesForRuleOne(date),
                 RuleKeyEnum.Two => CalculateTaxesForRuleTwo(date),
-                _ => throw new SystemException("System error, rule not found"),
+                _ => throw new ArgumentException("Rule not found"),
             };
         }
 
@@ -30,7 +33,8 @@ namespace DCT.Application.Services.TaxesCalculationService
 
             if (!taxSchedules.Any())
             {
-                throw new Exception("Didn't find any taxes for this date, please try another date");
+                _logger.LogInformation("Invalid date entered");
+                throw new SystemException("Didn't find any taxes for this date, please try another date");
             }
 
             double result = 0;
@@ -52,6 +56,7 @@ namespace DCT.Application.Services.TaxesCalculationService
 
             if (!taxeSchedules.Any())
             {
+                _logger.LogInformation("Invalid date entered");
                 throw new Exception("Didn't find any taxes for this date, please try another date");
             }
 
