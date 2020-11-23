@@ -1,13 +1,13 @@
 import {
-    CssBaseline,
-    Fade,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Paper,
-    Select,
-    Slide,
-    Typography
+  CssBaseline,
+  Fade,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  Slide,
+  Typography,
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
@@ -36,22 +36,34 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: "100%",
   },
+  errorPaper: {
+    backgroundColor: "red",
+    display: "flex",
+    padding: "5px",
+  },
 }));
 
 const Form: FC<IProps> = (props) => {
-    const [selectedMunicipalityId, setSelectedMunicipalityId] = useState<number | null>(null);
-    const [selectedDate, setSelectedDate] = useState<string | null>(null);
-    
-    const [result, setResult] = useState<string | null>(null);
-    
-    const classes = useStyles();
+  const [selectedMunicipalityId, setSelectedMunicipalityId] = 
+  useState<number | null>(props.municipalities.length > 0 ? props.municipalities[0].id : null);
+  const [selectedDate, setSelectedDate] = useState<string>("");
 
-    const handleSubmit = async () => {
-        if (selectedMunicipalityId && selectedDate) {
+  const [result, setResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const classes = useStyles();
+
+  const handleSubmit = async () => {
+    setError(null);
+    if (selectedMunicipalityId && selectedDate) {
+      try {
         const resp = await api.getTaxes(selectedMunicipalityId, selectedDate);
         setResult(resp.data);
-        }
-    };
+      } catch (ex) {
+        setResult(null);
+        setError("No taxes found, try another date");
+      }
+    }
+  };
 
   return (
     <div>
@@ -65,7 +77,9 @@ const Form: FC<IProps> = (props) => {
             <FormControl className={classes.formControl}>
               <InputLabel>Municipality</InputLabel>
               <Select
-                onChange={(event) => setSelectedMunicipalityId(event.target.value as number)}
+                onChange={(event) =>
+                  setSelectedMunicipalityId(event.target.value as number)
+                }
                 value={selectedMunicipalityId}
               >
                 {props.municipalities.map((x) => (
@@ -96,16 +110,19 @@ const Form: FC<IProps> = (props) => {
               Calculate
             </Button>
 
-            {result && (
+            {result && !error && (
               <Fade in={true}>
                 <div>
-                    <Typography variant="h5">
-                        Calculated Taxes 
-                    </Typography>
-                    <Typography variant="h4">
-                        {result}
-                    </Typography>
+                  <Typography variant="h5">Calculated Taxes</Typography>
+                  <Typography variant="h4">{result}</Typography>
                 </div>
+              </Fade>
+            )}
+            {error && (
+              <Fade in={true}>
+                <Paper className={classes.errorPaper}>
+                  <Typography variant="overline">{error}</Typography>
+                </Paper>
               </Fade>
             )}
           </Paper>
