@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100%",
   },
   errorPaper: {
-    backgroundColor: "red",
     display: "flex",
     padding: "5px",
   },
@@ -45,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Form: FC<IProps> = (props) => {
   const [selectedMunicipalityId, setSelectedMunicipalityId] = 
-  useState<number | null>(props.municipalities.length > 0 ? props.municipalities[0].id : null);
+      useState<number | null>(props.municipalities.length > 0 ? props.municipalities[0].id : null);
   const [selectedDate, setSelectedDate] = useState<string>("");
 
   const [result, setResult] = useState<string | null>(null);
@@ -60,7 +59,9 @@ const Form: FC<IProps> = (props) => {
         setResult(resp.data);
       } catch (ex) {
         setResult(null);
-        setError("No taxes found, try another date");
+        setError(
+          "No taxes were found for your current selection, please try enter another date or municipality"
+        );
       }
     }
   };
